@@ -1,4 +1,7 @@
 import net from 'net';
+import fs from 'fs';
+
+const socketFile = '/tmp/unix.sock';
 
 const server = net.createServer((connection) => {
   console.log('connected.');
@@ -15,4 +18,8 @@ const server = net.createServer((connection) => {
   connection.end();
 });
 
-server.listen('/tmp/unix.sock');
+try {
+  fs.unlinkSync(socketFile);
+} catch (error) {}
+
+server.listen(socketFile);
