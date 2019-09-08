@@ -1,9 +1,7 @@
 import net from 'net';
 
 const server = net.createServer((connection) => {
-  connection.on('connect', () => {
-    console.log('connected.');
-  });
+  console.log('connected.');
   connection.on('close', () => {
     console.log('disconnected.');
   });
